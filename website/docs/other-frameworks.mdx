@@ -242,7 +242,7 @@ use GraphQL\Type\Schema;
 use Mouf\Picotainer\Picotainer;
 use Psr\Container\ContainerInterface;
 use Psr\SimpleCache\CacheInterface;
-use Symfony\Component\Cache\Simple\ApcuCache;
+use Symfony\Component\Cache\Simple\FilesystemCache;
 use TheCodingMachine\GraphQLite\Http\Psr15GraphQLMiddlewareBuilder;
 use TheCodingMachine\GraphQLite\SchemaFactory;
 use Laminas\Stratigility\MiddlewarePipe;
@@ -261,7 +261,7 @@ return new Picotainer([
         return $builder->createMiddleware();
     },
     CacheInterface::class => function() {
-        return new ApcuCache();
+        return new FilesystemCache();
     },
     Schema::class => function(ContainerInterface $container) {
         // The magic happens here. We create a schema using GraphQLite SchemaFactory.
