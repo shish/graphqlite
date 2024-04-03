@@ -1,0 +1,27 @@
+{
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "require": {
+    "mouf/picotainer": "^1.1",
+    "symfony/cache": "^4.2"
+  },
+  "repositories": [
+    {
+      "type": "path",
+      "url": "vendor/thecodingmachine/graphqlite",
+      "options": {
+          "symlink": true
+      }
+    }
+  ],
+  "scripts": {
+    "symlink-package": [
+      "mkdir -p vendor/thecodingmachine && rm -f vendor/thecodingmachine/graphqlite && ln -s -f ../../../../ vendor/thecodingmachine/graphqlite"
+    ],
+    "pre-install-cmd": "@symlink-package",
+    "pre-update-cmd": "@symlink-package"
+  }
+}
